@@ -1,4 +1,4 @@
-#!/home/leonardo/Documentos/projetos/Python/venv/bin/python3
+#!/home/leonardo/Documentos/projetos/Python/Mine-Game/venv/bin/python3
 # -*- coding: utf-8 -*-
 import re
 import sys
