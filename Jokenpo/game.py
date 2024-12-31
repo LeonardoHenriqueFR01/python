@@ -56,7 +56,7 @@ Linhas()
 
 # Regras
 Regras('\033[33mREGRAS\033[m')
-print('[+] Escolha a sua opção. \n[+] A maquina irá escolher. \n[+] Sua opção deve vencer a maquina de acordo com as regras de ganhos.')
+print('[+] Escolha a sua opção. \n[+] A maquina irá escolher. \n[+] Sua opção deve vencer a maquina de acordo com as regras de ganhos. \n[+] \033[31mDigite 0 para sair.\033[m')
 Linhas()
 
 # Variaveis de estatisticas
@@ -67,17 +67,23 @@ jogadas = {1:'PEDRA', 2:'PAPEL', 3:'TESOURA'}
 
 # Loop infinito
 while True:
+    # Jogadas disponiveis
     print(f'[+] \033[33mOpções de jogada\033[m {"[ 1 PEDRA] [ 2 PAPEL] [ 3 TESOURA]":>40}')
     Linhas()
     try:    
         jogada = int(input('[+] Escolha a sua jogada: ')) # Pegando a jogada do usuário
         
-        if jogada < 1 or jogada > 3: # Caso o usuário não digite uma das opções
-            print('\033[31mEscolha apenas 1, 2 ou 3! Tente novamente.\033[m')
+        if jogada == 0: # Saindo do game
+            print('Finalizando...')
+            sleep(3)
+            break
+
+        elif jogada < 1 or jogada > 3: # Caso o usuário não digite uma das opções
+            print('[+] \033[31mEscolha apenas 1, 2 ou 3! Tente novamente.\033[m')
             continue
     
     except ValueError: # Caso o usuário não digite um número inteiro valido
-        print('\033[31mEscolha um número inteiro valido! Tente novamente.\033[m')
+        print('[+] \033[31mEscolha um número inteiro valido! Tente novamente.\033[m')
         continue
 
     except Exception as e: # Caso aconteça um erro inesperado
@@ -91,7 +97,7 @@ while True:
 
     maquina = randint(1, 3) # Para sortear um número entre 1 a 3 para a maquina
 
-    # Todas as possiveis jogadas de ganhos
+     # Todas as possiveis jogadas de ganhos
     if (jogada == 1 and maquina == 3) or (jogada == 2 and maquina == 1) or (jogada == 3 and maquina == 2):
         ganhos += 1 # Calcula 1 ganho
 
@@ -99,21 +105,8 @@ while True:
         print(f'[+] Você jogou {jogadas[jogada]}. \n[+] Maquina jogou {jogadas[maquina]}.')
         Linhas()
         Ganho()
-        try:
-            escolha = int(input('[+] [ 1 CONTINUAR] [ 0 VER ESTATISTICAS]: '))
-            Linhas()
-            if escolha == 1:
-                continue
-            
-            elif escolha == 0:
-                Resul()
-                break
-        
-        except ValueError: # Caso o usuário não digite um número inteiro valido
-            print('\033[31mDigite um número inteiro valido! Tente novamente.\033[m')
-            continue
 
-    # Caso o usuário escolha a mesma jogada que a maquina
+    # Se usuário escolha a mesma jogada que a maquina
     elif jogada == maquina:
         empates += 1 # Calcula mais 1 empate
 
@@ -121,21 +114,8 @@ while True:
         print(f'[+] Você jogou {jogadas[jogada]}. \n[+] Maquina jogou {jogadas[maquina]}.')
         Linhas()
         Empate()
-        try:
-            escolha = int(input('[+] [ 1 CONTINUAR] [ 0 VER ESTATISTICAS]: '))
-            Linhas()
-            if escolha == 1:
-                continue
-            
-            elif escolha == 0:
-                Resul()
-                break
-        
-        except ValueError: # Caso o usuário não digite um número inteiro valido
-            print('\033[31mDigite um número inteiro valido! Tente novamente.\033[m')
-            continue
 
-    # Caso nehuma opção acima aconteça ou seja o usuário perde
+    # Se a maquina ganhar do usuário 
     else:
         perdas += 1 # Calcula mais 1 perda
 
@@ -143,16 +123,25 @@ while True:
         print(f'[+] Você jogou {jogadas[jogada]}. \n[+] Maquina jogou {jogadas[maquina]}.')
         Linhas()
         Perda()
-        try:
+
+    # Loop infinito para pegar a opção se o usuário quer continuar jogando ou não
+    while True:
+        try: # Pegando a opção do usuário
             escolha = int(input('[+] [ 1 CONTINUAR] [ 0 VER ESTATISTICAS]: '))
             Linhas()
-            if escolha == 1:
-                continue
-            
-            elif escolha == 0:
+        
+            if escolha == 1: # Iniciando uma outra rodada
+                print('[+] Nova jogada...')
+                sleep(2)
+                break  # Sai do loop para continuar o jogo
+        
+            elif escolha == 0: # Sai do game
                 Resul()
-                break
+                exit()  # Sai do programa após mostrar estatísticas
+            
+            # Se não acontecer nenhuma das opções acima
+            else:
+                print('[+] \033[31mOpção invalida! Tente novamente.\033[m')
         
         except ValueError: # Caso o usuário não digite um número inteiro valido
-            print('\033[31mDigite um número inteiro valido! Tente novamente.\033[m')
-            continue
+            print('[+] \033[31mDigite um número inteiro valido! Tente novamente.\033[m')
