@@ -99,7 +99,7 @@ print("""\033[31m
 print('\033[33mV1.0.0\033[m', end='')
 print(f'{"By Leozindev_genius":>85}')
 Linhas()
-print('[1] \033[34mFAZER CHAMADA\033[m [2] \033[34mENVIAR SMS\033[m [3] \033[34mENVIAR MENSAGEM WHATSAPP\033[m \n\033[31m[0] SAIR\033[m')
+print('[1] \033[33mFAZER CHAMADA\033[m [2] \033[33mENVIAR SMS\033[m [3] \033[33mENVIAR MENSAGEM WHATSAPP\033[m \n\033[31m[0] SAIR\033[m')
 Linhas()
 
 while True:
