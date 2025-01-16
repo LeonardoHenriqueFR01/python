@@ -38,7 +38,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/home/leonardo/Documentos/projetos/Python/Automações/Chamadas -Sms-Ligações/venv"
+VIRTUAL_ENV="/home/leonardo/Documentos/projetos/Python/Automações/Chamadas-Sms-Ligações/venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
